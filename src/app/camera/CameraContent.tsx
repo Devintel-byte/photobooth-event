@@ -33,15 +33,7 @@ export const CameraContent = () => {
   const { edgestore } = useEdgeStore();
   const router = useRouter();
 
-  // init camera
-  useEffect(() => {
-    if (!filterId || !ratio || !gender || !captureMode || !width || !height) {
-      setError("Missing required parameters. Please start over.");
-      router.push("/filter");
-      return;
-    }
-
-    const startWebcam = async () => {
+  const startWebcam = async () => {
       try {
         const constraints = {
           video: {
@@ -63,6 +55,14 @@ export const CameraContent = () => {
         setError("Failed to access webcam. Please allow camera access.");
       }
     };
+  
+  // init camera
+  useEffect(() => {
+    if (!filterId || !ratio || !gender || !captureMode || !width || !height) {
+      setError("Missing required parameters. Please start over.");
+      router.push("/filter");
+      return;
+    }
     startWebcam();
 
     return () => {
@@ -236,6 +236,7 @@ export const CameraContent = () => {
     setPreviewImage(null);
     setJobError(null);
     setJobStatus("IN_QUEUE");
+    startWebcam();
   };
 
   const handleCancel = () => router.push("/filter");
@@ -284,7 +285,7 @@ export const CameraContent = () => {
               </button>
               <button
                 onClick={handleRetake}
-                className="px-6 py-3 rounded-lg text-white bg-gray-600 hover:bg-gray-700"
+                className="px-6 py-3 rounded-lg text-white bg-gray-600 hover:bg-gray-700 cursor-pointer"
               >
                 Retake
               </button>
@@ -293,7 +294,7 @@ export const CameraContent = () => {
             <button
               onClick={startCountdown}
               disabled={isCapturing}
-              className={`px-6 py-3 rounded-lg ${
+              className={`px-6 py-3 rounded-lg cursor-pointer ${
                 isCapturing ? "bg-gray-400" : "bg-red-500 hover:bg-red-600 text-white"
               }`}
             >

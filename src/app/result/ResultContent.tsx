@@ -63,27 +63,38 @@ export const ResultPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-8 mb-3">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8 mb-3">
+          {/* Download Button */}
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className={`px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 ${
-              downloading ? "opacity-75" : ""
+            className={`w-full sm:w-auto px-4 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors ${
+              downloading ? "opacity-75 cursor-not-allowed" : ""
             }`}
           >
-            {downloading ? "Downloading..." : "Download"}
+            {downloading ? (
+              <span className="flex items-center justify-center">
+                Downloading...
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">
+                Download
+              </span>
+            )}
           </button>
 
+          {/* QR Code Button */}
           <button
             onClick={() => setShowQRModal(true)}
-            className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700"
+            className="w-full sm:w-auto px-4 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors flex items-center justify-center"
           >
-            Get QR Code
+            QR Code
           </button>
 
+          {/* New Photo Button */}
           <Link
             href="/select-mode"
-            className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
+            className="w-full sm:w-auto px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center text-center"
           >
             New Photo
           </Link>

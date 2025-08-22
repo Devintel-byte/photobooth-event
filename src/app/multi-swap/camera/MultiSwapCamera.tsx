@@ -29,14 +29,7 @@ export default function MultiSwapCamera() {
   const width = 1024;
   const height = 768;
 
-  useEffect(() => {
-    if (!styleId) {
-      setError("Missing style ID. Please start over.");
-      router.push("/multi-swap/filter");
-      return;
-    }
-
-    const startWebcam = async () => {
+  const startWebcam = async () => {
       try {
         const constraints = {
           video: { width: { ideal: width }, height: { ideal: height }, facingMode: "user" },
@@ -55,6 +48,13 @@ export default function MultiSwapCamera() {
         setError("Failed to access webcam. Please allow camera access.");
       }
     };
+
+  useEffect(() => {
+    if (!styleId) {
+      setError("Missing style ID. Please start over.");
+      router.push("/multi-swap/filter");
+      return;
+    }
     startWebcam();
 
     return () => {
@@ -178,6 +178,17 @@ export default function MultiSwapCamera() {
     }
   };
 
+  const handleRetake = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach((track) => track.stop());
+    }
+    setPreviewImage(null);
+    setJobError(null);
+    setJobStatus("IN_QUEUE");
+    startWebcam();
+  };
+
   const handleCancel = () => router.push("/multi-swap/filter");
 
   return (
@@ -214,8 +225,8 @@ export default function MultiSwapCamera() {
                 {isProcessing ? "Processing..." : "Use this Photo"}
               </button>
               <button
-                onClick={() => setPreviewImage(null)}
-                className="px-6 py-3 rounded-lg font-medium text-white bg-gray-600 hover:bg-gray-700 transition-colors"
+                onClick={handleRetake}
+                className="px-6 py-3 rounded-lg font-medium text-white bg-gray-600 hover:bg-gray-700 transition-colors cursor-pointer"
               >
                 Retake
               </button>
