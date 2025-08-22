@@ -35,7 +35,7 @@ export default function QRCodeModal({
   const getQRValue = (url: string) => {
     try {
       new URL(url);
-      console.log('Valid QR code URL:', url);
+      // console.log('Valid QR code URL:', url);
       return url;
     } catch {
       console.warn('Invalid URL, falling back to empty string');
@@ -70,7 +70,7 @@ export default function QRCodeModal({
           </p>
         )}
         <div className="text-center text-sm text-gray-600 mb-4">
-          Scan this QR code with your phone to download the image
+          Scan to download the image
         </div>
         <div className="text-center text-xs text-gray-500 mb-4 break-all">
           {displayUrl.length > 40 ? `${displayUrl.substring(0, 40)}...` : displayUrl}
