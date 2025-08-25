@@ -16,7 +16,7 @@ export default function SelectMode() {
       <p className="text-center uppercase mb-5 text-lg">AI PHOTOBOOTH</p>
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">Select Mode</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 justify-center">
           <motion.div
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -29,7 +29,7 @@ export default function SelectMode() {
             <p className="text-gray-600 text-center">Perfect for individual portraits with advanced customization</p>
            </div>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             className="p-6 rounded-xl bg-gray-100 border-2 border-gray-200 cursor-pointer"
@@ -40,7 +40,7 @@ export default function SelectMode() {
                 <h2 className="text-2xl font-bold mb-1 text-center">Group Mode</h2>
                 <p className="text-gray-600 text-center">Great for group photos with fun themed filters</p>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </div>

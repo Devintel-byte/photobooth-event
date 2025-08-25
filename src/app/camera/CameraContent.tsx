@@ -158,7 +158,7 @@ export const CameraContent = () => {
         img.onerror = reject;
       });
 
-    const OVERLAY_IMAGE = "/Booth_overlay_PRE1.png";
+    const OVERLAY_IMAGE = "/AI_Photobooth.png";
     const generatedUrl = `data:image/jpg;base64,${generatedBase64}`;
 
     const [genImg, overlayImg] = await Promise.all([
